@@ -681,7 +681,7 @@
           // ==========================================
           try {
             // Catatan: URL akan saya ganti sendiri nanti dengan URL Vercel asli
-            await fetch('https://NAMA-PROJECT-VERCEL-ANDA.vercel.app/api/notify', {
+            await fetch('/api/notify', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
@@ -706,7 +706,7 @@
           localStorage.removeItem('orders');
           
           // Redirect ke halaman sukses
-          // window.location.href = 'order6.html';
+          window.location.href = 'order6.html';
         } else {
           // Reset button state jika gagal
           btnKirim.innerHTML = originalText;
