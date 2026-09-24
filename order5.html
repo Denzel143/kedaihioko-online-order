@@ -675,6 +675,26 @@
         const success = await sendOrderToFirebase(orderData);
         
         if (success) {
+          
+          // ==========================================
+          // KODE BARU: Kirim Sinyal FCM via Vercel API
+          // ==========================================
+          try {
+            // Catatan: URL akan saya ganti sendiri nanti dengan URL Vercel asli
+            await fetch('https://NAMA-PROJECT-VERCEL-ANDA.vercel.app/api/notify', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                nama: orderName,
+                total: total
+              })
+            });
+            console.log("Sinyal notifikasi berhasil dipicu ke Vercel!");
+          } catch (notifError) {
+            console.error("Gagal mengirim notifikasi (pesanan tetap masuk):", notifError);
+          }
+          // ==========================================
+
           // Simpan data pesanan yang telah dikirim untuk ditampilkan di halaman sukses
           localStorage.setItem('lastOrder', JSON.stringify({ 
             total: total, 
